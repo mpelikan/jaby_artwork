@@ -1,0 +1,87 @@
+<?xml version="1.0" standalone="no"?>
+<svg width="700" height="800" viewBox="0 0 700 800" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+	<defs>
+		<radialGradient id="sphere_gradient">
+			<stop offset="70%" stop-color="#fff"/>
+			<stop offset="100%" stop-color="#bbb"/>
+		</radialGradient>
+
+		<radialGradient id="globe_gradient">
+			<stop offset="25%" stop-color="#cdb"/>
+			<stop offset="100%" stop-color="#0c6"/>
+		</radialGradient>
+		<svg id="globe">
+			<circle fill="url(#globe_gradient)" cx="350" cy="350" r="185" />
+		</svg>
+
+		<linearGradient id="primary_gradient" x1="0.5" x2="0" y1="0" y2="1">
+			<stop offset="0%" stop-color="#666"/>
+			<stop offset="100%" stop-color="#fff"/>
+		</linearGradient>
+		<svg id="primary_hole">
+			<circle fill="url(#primary_gradient)" cx="350" cy="350" r="100"/>
+
+			<svg id="globe_hole">
+				<circle fill="url(#globe_gradient)" cx="350" cy="350" r="85"/>
+			</svg>
+		</svg>
+
+		<linearGradient id="secondary_gradient" x1="1" x2="0" y1="0" y2="1">
+			<stop offset="0%" stop-color="#fff" stop-opacity="1" />
+			<stop offset="100%" stop-color="#fff" stop-opacity="0.9" />
+		</linearGradient>
+		<mask id="secondary_mask">
+			<ellipse fill="url(#secondary_gradient)" cx="560" cy="350" rx="40" ry="50" />
+		</mask>
+		<svg id="secondary_hole" mask="url(#secondary_mask)">
+			<ellipse fill="url(#secondary_hole_gradient)" cx="550" cy="350" rx="45" ry="60" />
+			<ellipse fill="url(#secondary_glow_gradient)" cx="530" cy="350" rx="45" ry="60" />
+			<use xlink:href="#globe"/>
+		</svg>
+		<linearGradient id="secondary_hole_gradient" x1="0" x2="1" y1="0.5" y2="0.5">
+			<stop offset="0%" stop-color="#333"/>
+			<stop offset="100%" stop-color="#fff"/>
+		</linearGradient>
+		<linearGradient id="secondary_glow_gradient" x1="0" x2="1" y1="0.5" y2="0.5">
+			<stop offset="0%" stop-color="#fff"/>
+			<stop offset="100%" stop-color="#afa"/>
+		</linearGradient>
+
+		<linearGradient id="shine_gradient" x1="0.5" x2="0" y1="0" y2="1">
+			<stop offset="0%" stop-color="#fff" stop-opacity="0.6" />
+			<stop offset="100%" stop-color="#fff" stop-opacity="0" />
+		</linearGradient>
+
+		<radialGradient id="shadow_gradient">
+			<stop offset="25%" stop-color="#aaa"/>
+			<stop offset="100%" stop-color="#fff"/>
+		</radialGradient>
+	</defs>
+
+	<svg id="sphere">
+		<circle fill="url(#sphere_gradient)" cx="350" cy="350" r="300"/>
+
+		<svg id="primary_hole">
+			<circle fill="url(#primary_gradient)" cx="350" cy="350" r="100"/>
+
+			<svg id="globe_hole">
+				<circle fill="url(#globe_gradient)" cx="350" cy="350" r="85"/>
+			</svg>
+		</svg>
+
+		<svg id="secondary_holes">
+			<use xlink:href="#secondary_hole" transform="rotate(15, 350, 350)" />
+			<use xlink:href="#secondary_hole" transform="rotate(75, 350, 350)" />
+			<use xlink:href="#secondary_hole" transform="rotate(135, 350, 350)" />
+			<use xlink:href="#secondary_hole" transform="rotate(195, 350, 350)" />
+			<use xlink:href="#secondary_hole" transform="rotate(255, 350, 350)" />
+			<use xlink:href="#secondary_hole" transform="rotate(315, 350, 350)" />
+		</svg>
+
+		<circle fill="url(#shine_gradient)" cx="350" cy="350" r="300"/>
+
+	</svg>
+
+	<ellipse fill="url(#shadow_gradient)" cx="330" cy="675" rx="200" ry="15" />
+</svg>
