@@ -1,69 +1,116 @@
 <html>
 <head>
 	<title>Jaby</title>
+
+	<style>
+		body {
+			background-color: #cde;
+		}
+		svg {
+			position: absolute;
+			width: 100%;
+			height: 70%;
+			top: 15%;
+			margin: 0 auto;
+		}
+	</style>
 </head>
 <body>
 	<svg width="700" height="800" viewBox="0 0 700 800" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
 
+		<style>
+			.sphere {
+				color: #fff;
+			}
+			.core {
+				color: #0a0;
+			}
+		</style>
+
 		<defs>
+			<radialGradient id="glow_gradient" class="core">
+				<stop offset="55%" stop-color="currentColor" stop-opacity="0"/>
+				<stop offset="100%" stop-color="currentColor" stop-opacity="0.8"/>
+			</radialGradient>
+			<g id="inner">
+				<circle fill="#fff" cx="350" cy="350" r="298"/>
+				<circle fill="url(#glow_gradient)" cx="350" cy="350" r="298"/>
+			</g>
+
 			<radialGradient id="sphere_gradient">
 				<stop offset="70%" stop-color="#fff"/>
 				<stop offset="100%" stop-color="#bbb"/>
 			</radialGradient>
-			<linearGradient id="primary_hole_gradient" x1="0.5" x2="0" y1="0" y2="1">
-				<stop offset="0%" stop-color="#333"/>
+			<g id="sphere">
+				<path fill="url(#sphere_gradient)" fill-rule="evenodd" d="M 350,350 m -300, 0 a 300,300 0 1,0 600,0 a 300,300 0 1,0 -600,0 M 350,350 m -85, 0 a 85,85 0 1,0 170,0 a 85,85 0 1,0 -170,0" />
+			</g>
+
+			<radialGradient id="core_edge_gradient" class="core">
+				<stop offset="0%" stop-color="currentColor" stop-opacity="0"/>
+				<stop offset="49%" stop-color="currentColor" stop-opacity="0"/>
+				<stop offset="50%" stop-color="currentColor" stop-opacity="1"/>
+				<stop offset="92%" stop-color="currentColor" stop-opacity="1"/>
+				<stop offset="100%" stop-color="currentColor" stop-opacity="0.4"/>
+			</radialGradient>
+			<radialGradient id="core_radial_gradient" cx="0.55" cy="0.45" r="0.75" class="core">
+				<stop offset="0%" stop-color="currentColor" stop-opacity="0.1"/>
+				<stop offset="30%" stop-color="currentColor" stop-opacity="1"/>
+				<stop offset="40%" stop-color="currentColor" stop-opacity="1"/>
+				<stop offset="50%" stop-color="currentColor" stop-opacity="0"/>
+			</radialGradient>
+			<linearGradient id="core_linear_gradient" x1="0.6" x2="0" y1="0" y2="1" class="core">
+				<stop offset="0%" stop-color="#currentColor" stop-opacity="0" />
+				<stop offset="100%" stop-color="#currentColor" stop-opacity="0.5" />
+			</linearGradient>
+			<g id="core">
+				<use xlink:href="#inner" />
+				<circle fill="#cc0" cx="350" cy="350" r="180" />
+				<circle id="core_pulse" fill="url(#core_edge_gradient)" cx="350" cy="350" r="180" />
+				<circle fill="url(#core_radial_gradient)" cx="350" cy="350" r="180" />
+				<circle fill="url(#core_linear_gradient)" cx="350" cy="350" r="180" />
+			</g>
+
+			<linearGradient id="primary_gradient" x1="0.5" x2="0" y1="0" y2="1">
+				<stop offset="0%" stop-color="#666"/>
+				<stop offset="10%" stop-color="#777"/>
 				<stop offset="100%" stop-color="#fff"/>
 			</linearGradient>
-			<radialGradient id="center_globe_gradient">
-				<stop offset="25%" stop-color="#cdb"/>
-				<stop offset="100%" stop-color="#0c6"/>
-			</radialGradient>
-			<linearGradient id="mask_gradient" x1="1" x2="0" y1="0" y2="1">
+			<g id="primary_hole">
+				<path fill="url(#primary_gradient)" fill-rule="evenodd" d="M 350,350 m -100, 0 a 100,100 0 1,0 200,0 a 100,100 0 1,0 -200,0 M 350,350 m -85, 0 a 85,85 0 1,0 170,0 a 85,85 0 1,0 -170,0" />
+			</g>
+
+			<linearGradient id="secondary_gradient" x1="1" x2="0" y1="0" y2="1">
 				<stop offset="0%" stop-color="#fff" stop-opacity="1" />
 				<stop offset="100%" stop-color="#fff" stop-opacity="0.9" />
 			</linearGradient>
-			<mask id="globe_hole_mask">
-				<circle fill="url(#center_globe_gradient)" cx="350" cy="350" r="85" />
-			</mask>
-			<svg id="globe_hole" mask="url(#globe_hole_mask)">
-				<circle fill="url(#center_globe_gradient)" cx="350" cy="350" r="185" />
-			</svg>
 			<mask id="secondary_mask">
-				<ellipse fill="url(#mask_gradient)" cx="560" cy="350" rx="40" ry="50" />
+				<path fill="#fff" d="M545,350 m -30,0 a 45,60 0 1 1 0 1 z" />
 			</mask>
-			<svg id="secondary_hole" mask="url(#secondary_mask)">
-				<ellipse fill="url(#secondary_hole_gradient)" cx="550" cy="350" rx="45" ry="60" />
-				<ellipse fill="url(#secondary_glow_gradient)" cx="530" cy="350" rx="45" ry="60" />
-				<circle fill="url(#center_globe_gradient)" cx="350" cy="350" r="185" />
-			</svg>
+			<g id="secondary_hole" mask="url(#secondary_mask)">
+				<use xlink:href="#core" />
+				<path fill="url(#secondary_hole_gradient)" fill-rule="evenodd" d="M545,350 m -30,0 a 45,60 0 1 1 0 0.1 M525,350 m -30,0 a 45,60 0 1 1 0 0.1 z" />
+			</g>
 			<linearGradient id="secondary_hole_gradient" x1="0" x2="1" y1="0.5" y2="0.5">
 				<stop offset="0%" stop-color="#333"/>
 				<stop offset="100%" stop-color="#fff"/>
 			</linearGradient>
-			<linearGradient id="secondary_glow_gradient" x1="0" x2="1" y1="0.5" y2="0.5">
-				<stop offset="0%" stop-color="#fff"/>
-				<stop offset="100%" stop-color="#afa"/>
-			</linearGradient>
-			<linearGradient id="shine_gradient" x1="0.5" x2="0" y1="0" y2="1">
+
+			<linearGradient id="shine_gradient" x1="0.6" x2="0" y1="0" y2="1">
 				<stop offset="0%" stop-color="#fff" stop-opacity="0.6" />
 				<stop offset="100%" stop-color="#fff" stop-opacity="0" />
 			</linearGradient>
+
 			<radialGradient id="shadow_gradient">
-				<stop offset="25%" stop-color="#aaa"/>
-				<stop offset="100%" stop-color="#fff"/>
+				<stop offset="25%" stop-color="#000" stop-opacity="0.5"/>
+				<stop offset="100%" stop-color="#000" stop-opacity="0"/>
 			</radialGradient>
 		</defs>
 
-		<svg id="sphere">
-			<circle fill="url(#sphere_gradient)" cx="350" cy="350" r="300"/>
-
-			<svg id="primary_hole">
-				<circle fill="url(#primary_hole_gradient)" cx="350" cy="350" r="100"/>
-
-				<use xlink:href="#globe_hole" />
-			</svg>
-
-			<g id="secondary_holes">
+		<g id="jaby_mascot">
+			<use xlink:href="#core" />
+	 		<use xlink:href="#sphere" />
+			<use xlink:href="#primary_hole" />
+	 		<g id="rotated_sphere">
 				<use xlink:href="#secondary_hole" transform="rotate(15, 350, 350)" />
 				<use xlink:href="#secondary_hole" transform="rotate(75, 350, 350)" />
 				<use xlink:href="#secondary_hole" transform="rotate(135, 350, 350)" />
@@ -71,23 +118,42 @@
 				<use xlink:href="#secondary_hole" transform="rotate(255, 350, 350)" />
 				<use xlink:href="#secondary_hole" transform="rotate(315, 350, 350)" />
 			</g>
-
 			<circle fill="url(#shine_gradient)" cx="350" cy="350" r="300"/>
+		</g>
+		<ellipse fill="url(#shadow_gradient)" cx="325" cy="680" rx="225" ry="20" />
 
-		</svg>
-
-		<ellipse id="shadow" fill="url(#shadow_gradient)" cx="330" cy="675" rx="200" ry="15" />
 	</svg>
 
 	<script>
 
 		window.onload = function () {
+
+			function pulseCore( ) {
+				var phase = rotateDeg % phaseDegrees;
+				var newRadius;
+
+				if ( phase > ( phaseDegrees / 2 ) ) {
+					phase = ( phaseDegrees / 2 ) - ( phase - ( phaseDegrees / 2 ) );
+				}
+				newRadius = core_radius + ( phase * 2 );
+				core_pulse.setAttribute( "r", newRadius );
+			}
+
+			function rotateSphere( ) {
+				rotateDeg = ( rotateDeg + 0.5 ) % 360;
+				rotated_sphere.setAttribute( "transform", "rotate( " + rotateDeg + ", 350, 350 )" );
+			}
+
+			var phaseDegrees = 10;
+			var rotated_sphere = document.getElementById( "rotated_sphere" );
 			var rotateDeg = 0;
+			var core_pulse = document.getElementById( "core_pulse" );
+			var core_radius = parseInt( core_pulse.getAttribute( "r" ), 10 );
 
 			setInterval( function() {
-				rotateDeg = ( rotateDeg + 0.1 ) % 360;
-				secondary_holes.setAttribute( "transform", "rotate( " + rotateDeg + ", 350, 350 )" );
-			}, 1 );
+				rotateSphere();
+				pulseCore();
+			}, 100 );
 		};
 
 	</script>
