@@ -4,7 +4,7 @@
 	<defs>
 		<radialGradient id="glow_gradient">
 			<stop offset="55%" stop-color="currentColor" stop-opacity="0"/>
-			<stop offset="100%" stop-color="currentColor" stop-opacity="0.8"/>
+			<stop offset="100%" stop-color="currentColor" stop-opacity="1"/>
 		</radialGradient>
 		<g id="inner">
 			<circle fill="#fff" cx="350" cy="400" r="298"/>
@@ -19,29 +19,16 @@
 			<path fill="url(#sphere_gradient)" fill-rule="evenodd" d="M 350,400 m -300, 0 a 300,300 0 1,0 600,0 a 300,300 0 1,0 -600,0 M 350,400 m -85, 0 a 85,85 0 1,0 170,0 a 85,85 0 1,0 -170,0" />
 		</g>
 
-		<radialGradient id="core_edge_gradient">
-			<stop offset="0%" stop-color="currentColor" stop-opacity="0"/>
-			<stop offset="49%" stop-color="currentColor" stop-opacity="0"/>
-			<stop offset="50%" stop-color="currentColor" stop-opacity="1"/>
-			<stop offset="98%" stop-color="currentColor" stop-opacity="1"/>
-			<stop offset="100%" stop-color="currentColor" stop-opacity="0.4"/>
-		</radialGradient>
-		<radialGradient id="core_radial_gradient" cx="0.55" cy="0.45" r="0.75">
+		<radialGradient id="core_radial_gradient">
 			<stop offset="0%" stop-color="currentColor" stop-opacity="0.1"/>
 			<stop offset="30%" stop-color="currentColor" stop-opacity="1"/>
-			<stop offset="40%" stop-color="currentColor" stop-opacity="1"/>
-			<stop offset="50%" stop-color="currentColor" stop-opacity="0"/>
+			<stop offset="95%" stop-color="currentColor" stop-opacity="1"/>
+			<stop offset="100%" stop-color="currentColor" stop-opacity="0.4"/>
 		</radialGradient>
-		<linearGradient id="core_linear_gradient" x1="0.6" x2="0" y1="0" y2="1">
-			<stop offset="0%" stop-color="#currentColor" stop-opacity="0" />
-			<stop offset="100%" stop-color="#currentColor" stop-opacity="0.5" />
-		</linearGradient>
-		<g id="core">
+ 		<g id="core">
 			<use xlink:href="#inner" />
-			<circle fill="#cc0" cx="350" cy="400" r="180" />
-			<circle id="core_pulse" fill="url(#core_edge_gradient)" cx="350" cy="400" r="180" />
-			<circle fill="url(#core_radial_gradient)" cx="350" cy="400" r="180" />
-			<circle fill="url(#core_linear_gradient)" cx="350" cy="400" r="180" />
+			<circle fill="#cc0" cx="350" cy="400" r="170" />
+			<circle id="core_pulse" fill="url(#core_radial_gradient)" cx="350" cy="400" r="170" />
 		</g>
 
 		<linearGradient id="primary_gradient" x1="0.5" x2="0" y1="0" y2="1">
@@ -58,11 +45,11 @@
 			<stop offset="100%" stop-color="#fff" stop-opacity="0.9" />
 		</linearGradient>
 		<mask id="secondary_mask">
-			<path fill="#fff" d="M545,400 m -30,0 a 45,60 0 1 1 0 1 z" />
+			<path fill="#fff" d="M530,400 m -30,0 a 45,60 0 1 1 0 1 z" />
 		</mask>
 		<g id="secondary_hole" mask="url(#secondary_mask)">
 			<use xlink:href="#core" />
-			<path fill="url(#secondary_hole_gradient)" fill-rule="evenodd" d="M545,400 m -30,0 a 45,60 0 1 1 0 0.1 M525,400 m -30,0 a 45,60 0 1 1 0 0.1 z" />
+			<path fill="url(#secondary_hole_gradient)" fill-rule="evenodd" d="M530,400 m -30,0 a 45,60 0 1 1 0 0.1 M510,400 m -30,0 a 45,60 0 1 1 0 0.1 z" />
 		</g>
 		<linearGradient id="secondary_hole_gradient" x1="0" x2="1" y1="0.5" y2="0.5">
 			<stop offset="0%" stop-color="#333"/>
