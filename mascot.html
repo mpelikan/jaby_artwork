@@ -1,27 +1,45 @@
 <html>
+
 <head>
-	<title>Jaby</title>
+	<title>Mascot</title>
 
 	<style>
 		body {
-			background-color: #dde;
+			background-color: #eee;
+			background-image: linear-gradient( top, #aaa 0%, #eee 51% );
+			background-image: -webkit-linear-gradient( top, #aaa 0%, #eee 51% );
+			background-image: -ms-linear-gradient( top, #aaa 0%, #eee 51%) ;
+			background-image: -webkit-gradient(
+				linear,
+				left top,
+				left bottom,
+				color-stop( 0, #aaa ),
+				color-stop( 0.51, #eee )
+			);
 		}
-		#logo {
+		#mascot {
+			width: 50%;
+			margin: auto;
 			position: absolute;
-			width: 100%;
-			margin: 0 auto;
+			top: 50%;
+			left: 50%;
+			-webkit-transform: translate(-50%,-50%);
+			-ms-transform: translate(-50%,-50%);
+			transform: translate(-50%,-50%);
 		}
 	</style>
+
 </head>
+
 <body>
-	<svg id="logo" width="700" height="800" viewBox="0 0 700 800" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" style="color:#0a0;">
+	<svg id="mascot" width="700" height="800" viewBox="0 0 700 800" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" style="color:#0a0;">
 
 		<defs>
 			<radialGradient id="glow_gradient">
 				<stop offset="55%" stop-color="currentColor" stop-opacity="0"/>
 				<stop offset="100%" stop-color="currentColor" stop-opacity="1"/>
 			</radialGradient>
-			<g id="inner">
+			<g id="inner_glow">
 				<circle fill="#fff" cx="350" cy="400" r="298"/>
 				<circle fill="url(#glow_gradient)" cx="350" cy="400" r="298"/>
 			</g>
@@ -36,40 +54,40 @@
 
 			<radialGradient id="core_radial_gradient">
 				<stop offset="0%" stop-color="currentColor" stop-opacity="0.1"/>
-				<stop offset="30%" stop-color="currentColor" stop-opacity="1"/>
+				<stop offset="40%" stop-color="currentColor" stop-opacity="1"/>
 				<stop offset="95%" stop-color="currentColor" stop-opacity="1"/>
 				<stop offset="100%" stop-color="currentColor" stop-opacity="0.4"/>
 			</radialGradient>
-	 		<g id="core">
-				<use xlink:href="#inner" />
-				<circle fill="#cc0" cx="350" cy="400" r="170" />
-				<circle id="core_pulse" fill="url(#core_radial_gradient)" cx="350" cy="400" r="170" />
+			<g id="core">
+				<use xlink:href="#inner_glow" />
+				<circle fill="#cc0" cx="350" cy="400" r="160" />
+				<circle id="core_pulse" fill="url(#core_radial_gradient)" cx="350" cy="400" r="160" />
 			</g>
 
-			<linearGradient id="primary_gradient" x1="0.5" x2="0" y1="0" y2="1">
+			<linearGradient id="primary_hole_gradient" x1="0.5" x2="0" y1="0" y2="1">
 				<stop offset="0%" stop-color="#666"/>
 				<stop offset="10%" stop-color="#777"/>
 				<stop offset="100%" stop-color="#fff"/>
 			</linearGradient>
-			<g id="primary_hole">
-				<path fill="url(#primary_gradient)" fill-rule="evenodd" d="M 350,400 m -100, 0 a 100,100 0 1,0 200,0 a 100,100 0 1,0 -200,0 M 350,400 m -85, 0 a 85,85 0 1,0 170,0 a 85,85 0 1,0 -170,0" />
+			<g id="primary">
+				<g id="primary_hole">
+					<path fill="url(#primary_hole_gradient)" fill-rule="evenodd" d="M 350,400 m -100, 0 a 100,100 0 1,0 200,0 a 100,100 0 1,0 -200,0 M 350,400 m -85, 0 a 85,85 0 1,0 170,0 a 85,85 0 1,0 -170,0" />
+				</g>
 			</g>
 
-			<linearGradient id="secondary_gradient" x1="1" x2="0" y1="0" y2="1">
-				<stop offset="0%" stop-color="#fff" stop-opacity="1" />
-				<stop offset="100%" stop-color="#fff" stop-opacity="0.9" />
-			</linearGradient>
-			<mask id="secondary_mask">
-				<path fill="#fff" d="M530,400 m -30,0 a 45,60 0 1 1 0 1 z" />
-			</mask>
-			<g id="secondary_hole" mask="url(#secondary_mask)">
-				<use xlink:href="#core" />
-				<path fill="url(#secondary_hole_gradient)" fill-rule="evenodd" d="M530,400 m -30,0 a 45,60 0 1 1 0 0.1 M510,400 m -30,0 a 45,60 0 1 1 0 0.1 z" />
-			</g>
 			<linearGradient id="secondary_hole_gradient" x1="0" x2="1" y1="0.5" y2="0.5">
 				<stop offset="0%" stop-color="#333"/>
 				<stop offset="100%" stop-color="#fff"/>
 			</linearGradient>
+			<mask id="secondary_mask">
+				<path fill="#fff" d="M530,400 m -30,0 a 45,60 0 1 1 0 1 z" />
+			</mask>
+			<g id="secondary">
+				<g id="secondary_hole" mask="url(#secondary_mask)">
+					<use xlink:href="#core" />
+					<path fill="url(#secondary_hole_gradient)" fill-rule="evenodd" d="M530,400 m -30,0 a 45,60 0 1 1 0 0.1 M510,400 m -30,0 a 45,60 0 1 1 0 0.1 z" />
+				</g>
+			</g>
 
 			<linearGradient id="shine_gradient" x1="0.6" x2="0" y1="0" y2="1">
 				<stop offset="0%" stop-color="#fff" stop-opacity="0.6" />
@@ -82,17 +100,17 @@
 			</radialGradient>
 		</defs>
 
-		<g id="jaby_mascot">
+		<g id="mascot_sphere">
 			<use xlink:href="#core" />
 			<use xlink:href="#sphere" />
 			<use xlink:href="#primary_hole" />
 			<g id="rotated_sphere">
-				<use xlink:href="#secondary_hole" transform="rotate(15, 350, 400)" />
-				<use xlink:href="#secondary_hole" transform="rotate(75, 350, 400)" />
-				<use xlink:href="#secondary_hole" transform="rotate(135, 350, 400)" />
-				<use xlink:href="#secondary_hole" transform="rotate(195, 350, 400)" />
-				<use xlink:href="#secondary_hole" transform="rotate(255, 350, 400)" />
-				<use xlink:href="#secondary_hole" transform="rotate(315, 350, 400)" />
+				<use xlink:href="#secondary" transform="rotate(15, 350, 400)" />
+				<use xlink:href="#secondary" transform="rotate(75, 350, 400)" />
+				<use xlink:href="#secondary" transform="rotate(135, 350, 400)" />
+				<use xlink:href="#secondary" transform="rotate(195, 350, 400)" />
+				<use xlink:href="#secondary" transform="rotate(255, 350, 400)" />
+				<use xlink:href="#secondary" transform="rotate(315, 350, 400)" />
 			</g>
 			<circle fill="url(#shine_gradient)" cx="350" cy="400" r="300"/>
 		</g>
@@ -101,40 +119,52 @@
 	</svg>
 
 	<script>
+		"use strict";
 
 		window.onload = function () {
+			var animatedMascot = ( function() {
 
-			function pulseCore( ) {
-				var phase = rotateDeg % phaseDegrees;
-				var newRadius;
+				function pulseCore( ) {
+					pulse = pulse + pulseDirection;
+					core_pulse.setAttribute( "r", core_radius + pulse );
 
-				if ( phase > ( phaseDegrees / 2 ) ) {
-					phase = ( phaseDegrees / 2 ) - ( phase - ( phaseDegrees / 2 ) );
+					if ( pulse >= pulseMax || pulse <= 0 ) {
+						pulseDirection *= -1;
+					}
 				}
-				newRadius = core_radius + ( phase * 2.5 );
-				core_pulse.setAttribute( "r", newRadius );
-			}
 
-			function rotateSphere( ) {
-				rotateDeg = ( rotateDeg + 0.5 ) % 360;
-				rotated_sphere.setAttribute( "transform", "rotate( " + rotateDeg + ", 350, 400 )" );
-			}
+				function rotateSphere( ) {
+					rotateDeg = ( rotateDeg + rotateStep ) % 360;
+					rotated_sphere.setAttribute( "transform", "rotate( " + rotateDeg + ", 350, 400 )" );
+				}
 
-			var logo = document.getElementById( "logo" );
-			var phaseDegrees = 10;
-			var rotated_sphere = document.getElementById( "rotated_sphere" );
-			var rotateDeg = 0;
-			var core_pulse = document.getElementById( "core_pulse" );
-			var core_radius = parseInt( core_pulse.getAttribute( "r" ), 10 );
+				function changeCoreColor() {
+					mascot.style.color = "hsl(" + rotateDeg + ", 100%, 50% )";
+				}
 
-			console.info( logo );
+				var rotated_sphere = document.getElementById( "rotated_sphere" );
+				var rotateStep = 1;
+				var rotateDeg = 0;
 
-			setInterval( function() {
-				rotateSphere();
-				pulseCore();
-			}, 100 );
+				var core_pulse = document.getElementById( "core_pulse" );
+				var core_radius = parseInt( core_pulse.getAttribute( "r" ), 10 );
+				var pulseMax = 15;
+				var pulseDirection = 1;
+				var pulse = 0;
+
+				var mascot = document.getElementById( "mascot" );
+
+				setInterval( function() {
+					rotateSphere();
+					changeCoreColor();
+					pulseCore();
+				}, 100 );
+
+			}() );
 		};
 
 	</script>
+
 </body>
+
 </html>
