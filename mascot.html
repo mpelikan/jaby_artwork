@@ -40,12 +40,12 @@
 
 <body>
 
-	<svg id="jaby" width="700" height="800" viewBox="0 0 700 800" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet" style="color: #090;">
+	<svg id="jaby" width="700" height="800" viewBox="0 0 700 800" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
 
 		<defs>
 			<radialGradient id="inner_glow_gradient">
-				<stop offset="55%" stop-color="currentColor" stop-opacity="0"/>
-				<stop offset="100%" stop-color="currentColor" stop-opacity="1"/>
+				<stop class="core_color" offset="55%" stop-color="#090" stop-opacity="0"/>
+				<stop class="core_color" offset="100%" stop-color="#090" stop-opacity="1"/>
 			</radialGradient>
 			<g id="inner_glow">
 				<circle fill="#fff" cx="350" cy="350" r="298"/>
@@ -61,15 +61,15 @@
 			</g>
 
 			<radialGradient id="inner_gradient" fx="60%" fy="40%">
-				<stop offset="0%" stop-color="currentColor" stop-opacity="0.1"/>
-				<stop offset="40%" stop-color="currentColor" stop-opacity="1"/>
-				<stop offset="95%" stop-color="currentColor" stop-opacity="1"/>
-				<stop offset="100%" stop-color="currentColor" stop-opacity="0.4"/>
+				<stop class="core_color" offset="0%" stop-color="#090" stop-opacity="0.1"/>
+				<stop class="core_color" offset="40%" stop-color="#090" stop-opacity="1"/>
+				<stop class="core_color" offset="95%" stop-color="#090" stop-opacity="1"/>
+				<stop class="core_color" offset="100%" stop-color="#090" stop-opacity="0.4"/>
 			</radialGradient>
 			<g id="inner">
 				<use xlink:href="#inner_glow" />
-				<circle id="inner_power" fill="#ff0" cx="350" cy="350" r="160" />
-				<circle id="inner_core" fill="url(#inner_gradient)" cx="350" cy="350" r="160" />
+				<circle id="inner_power" fill="#ff0" cx="350" cy="350" r="170" />
+				<circle id="inner_core" fill="url(#inner_gradient)" cx="350" cy="350" r="170" />
 			</g>
 
 			<linearGradient id="primary_gradient" x1="0.5" x2="0" y1="0" y2="1">
@@ -165,7 +165,8 @@
 					pulseDirection: 1,
 					pulse: 0,
 					shadow: document.getElementById( "sphere_shadow" ),
-					sphere: document.getElementById( "jaby_sphere" )
+					sphere: document.getElementById( "jaby_sphere" ),
+					stops: document.getElementsByClassName( "core_color" )
 				};
 
 				jabyOrb.core_radius = parseInt( jabyOrb.inner_core.getAttribute( "r" ), 10 );
@@ -242,27 +243,48 @@
 					}
 				};
 
+				jabyOrb.setCoreColor = function setCoreColor( color ) {
+					var i;
+					var numStops = this.stops.length;
+
+					for ( i = 0; i < numStops; i++ ) {
+						this.stops[ i ].setAttribute( "stop-color", color );
+					}
+				};
+
+				jabyOrb.setPowerColor = function setInnerColor( color ) {
+					this.inner_power.setAttribute( "fill", color );
+				};
+
 				jabyOrb.setOrbColor = function animate() {
 					if ( this.on ) {
+						this.setPowerColor( "#ff0" );
+
 						if ( this.error ) {
-							this.orb.style.color = "#900";
+							this.setCoreColor( "#900" );
 						}
 						else {
 							if ( this.warning ) {
-								this.orb.style.color = "#990";
+								this.setCoreColor( "#960" );
 							}
 							else {
-								if ( this.online ) {
-									this.orb.style.color = "#090";
+								if ( this.notification ) {
+									this.setCoreColor( "#009" );
 								}
 								else {
-									this.orb.style.color = "#666";
+									if ( this.online ) {
+										this.setCoreColor( "#090" );
+									}
+									else {
+										this.setCoreColor( "#666" );
+									}
 								}
 							}
 						}
 					}
 					else {
-						this.orb.style.color = "#000";
+						this.setPowerColor( "#fff" );
+						this.setCoreColor( "#000" );
 					}
 				};
 
@@ -274,7 +296,6 @@
 					this.on = true;
 
 					this.setOrbColor();
-					this.inner_power.style.display = "block";
 
 					this.turnOnAnimation();
 				};
@@ -283,7 +304,6 @@
 					this.on = false;
 
 					this.setOrbColor();
-					this.inner_power.style.display = "none";
 				};
 
 				jabyOrb.setOnline = function setOnline() {
@@ -317,6 +337,16 @@
 
 				jabyOrb.clearWarning = function clearWarning() {
 					this.warning = false;
+					this.setOrbColor();
+				};
+
+				jabyOrb.setNotification = function setNotification() {
+					this.notification = true;
+					this.setOrbColor();
+				};
+
+				jabyOrb.clearNotification = function clearNotification() {
+					this.notification = false;
 					this.setOrbColor();
 				};
 
@@ -354,23 +384,29 @@
 				jabyOrb.setOnline();
 			}, 3000 );
 			setTimeout( function() {
-				jabyOrb.setWarning();
+				jabyOrb.setNotification();
 			}, 6000 );
 			setTimeout( function() {
-				jabyOrb.setError();
+				jabyOrb.setWarning();
 			}, 9000 );
 			setTimeout( function() {
-				jabyOrb.clearError();
+				jabyOrb.setError();
 			}, 12000 );
 			setTimeout( function() {
-				jabyOrb.clearWarning();
+				jabyOrb.clearError();
 			}, 15000 );
 			setTimeout( function() {
-				jabyOrb.setOffline();
+				jabyOrb.clearWarning();
 			}, 18000 );
 			setTimeout( function() {
-				jabyOrb.turnOff();
+				jabyOrb.clearNotification();
 			}, 21000 );
+			setTimeout( function() {
+				jabyOrb.setOffline();
+			}, 24000 );
+			setTimeout( function() {
+				jabyOrb.turnOff();
+			}, 27000 );
 		};
 	</script>
 
