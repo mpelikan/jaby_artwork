@@ -1,5 +1,5 @@
 <?xml version="1.0" standalone="no"?>
-<svg id="orb" width="700" height="800" viewBox="0 0 700 800" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+<svg id="icon" width="1400" height="1400" viewBox="0 0 1400 1400" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
 
 	<defs>
 		<radialGradient id="inner_glow_gradient">
@@ -27,8 +27,8 @@
 		</radialGradient>
 		<g id="inner">
 			<use xlink:href="#inner_glow" />
-			<circle id="inner_power" fill="#ff0" cx="350" cy="350" r="170" />
-			<circle id="inner_core" fill="url(#inner_gradient)" cx="350" cy="350" r="170" />
+			<circle id="inner_power" fill="#ff0" cx="350" cy="350" r="175" />
+			<circle id="inner_core" fill="url(#inner_gradient)" cx="350" cy="350" r="175" />
 		</g>
 
 		<linearGradient id="primary_gradient" x1="0.5" x2="0" y1="0" y2="1">
@@ -65,8 +65,9 @@
 		</radialGradient>
 	</defs>
 
-	<ellipse id="sphere_shadow" fill="url(#shadow_gradient)" cx="335" cy="730" rx="225" ry="20" />
-	<g id="jaby_sphere" transform="translate( 0 20 )">
+	<rect fill="#aab" x="0" y="0" width="1400" height="1400"/>
+
+	<g id="jaby_sphere" transform="scale( 2 )">
 		<g id="sphere_inner">
 			<use xlink:href="#inner" />
 		</g>

@@ -20,7 +20,7 @@
 			);
 		}
 
-		#jaby {
+		#orb {
 			width: 700px;
 			height: 800px;
 			margin: auto;
@@ -40,7 +40,7 @@
 
 <body>
 
-	<svg id="jaby" width="700" height="800" viewBox="0 0 700 800" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
+	<svg id="orb" width="700" height="800" viewBox="0 0 700 800" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet">
 
 		<defs>
 			<radialGradient id="inner_glow_gradient">
@@ -52,12 +52,12 @@
 				<circle fill="url(#inner_glow_gradient)" cx="350" cy="350" r="298"/>
 			</g>
 
-			<radialGradient id="sphere_gradient">
+			<radialGradient id="outer_gradient">
 				<stop offset="70%" stop-color="#fff"/>
 				<stop offset="100%" stop-color="#bbb"/>
 			</radialGradient>
-			<g id="sphere">
-				<path fill="url(#sphere_gradient)" fill-rule="evenodd" d="M 350,350 m -300, 0 a 300,300 0 1,0 600,0 a 300,300 0 1,0 -600,0 M 350,350 m -85, 0 a 85,85 0 1,0 170,0 a 85,85 0 1,0 -170,0" />
+			<g id="outer">
+				<path fill="url(#outer_gradient)" fill-rule="evenodd" d="M 350,350 m -300, 0 a 300,300 0 1,0 600,0 a 300,300 0 1,0 -600,0 M 350,350 m -85, 0 a 85,85 0 1,0 170,0 a 85,85 0 1,0 -170,0" />
 			</g>
 
 			<radialGradient id="inner_gradient" fx="60%" fy="40%">
@@ -112,7 +112,7 @@
 				<use xlink:href="#inner" />
 			</g>
  			<g id="sphere_outer">
-				<use xlink:href="#sphere" />
+				<use xlink:href="#outer" />
 			</g>
 			<g id="sphere_center">
 				<use xlink:href="#primary" />
@@ -147,10 +147,10 @@
 				}
 			}
 
-			var jabyOrb = ( function () {
+			var jaby = ( function () {
 
 				var jabyOrb = {
-					orb: document.getElementById( "jaby" ),
+					orb: document.getElementById( "orb" ),
 					on: false,
 					online: true,
 					error: false,
@@ -372,40 +372,40 @@
 				return jabyOrb;
 			}() );
 
-			jabyOrb.initialize();
-			addEventHandler( jabyOrb.orb, "click", function() {
-				jabyOrb.toggleOnOff();
+			jaby.initialize();
+			addEventHandler( jaby.orb, "click", function() {
+				jaby.toggleOnOff();
 			} );
 
 			setTimeout( function() {
-				jabyOrb.turnOn();
+				jaby.turnOn();
 			}, 1000 );
 			setTimeout( function() {
-				jabyOrb.setOnline();
+				jaby.setOnline();
 			}, 3000 );
 			setTimeout( function() {
-				jabyOrb.setNotification();
+				jaby.setNotification();
 			}, 6000 );
 			setTimeout( function() {
-				jabyOrb.setWarning();
+				jaby.setWarning();
 			}, 9000 );
 			setTimeout( function() {
-				jabyOrb.setError();
+				jaby.setError();
 			}, 12000 );
 			setTimeout( function() {
-				jabyOrb.clearError();
+				jaby.clearError();
 			}, 15000 );
 			setTimeout( function() {
-				jabyOrb.clearWarning();
+				jaby.clearWarning();
 			}, 18000 );
 			setTimeout( function() {
-				jabyOrb.clearNotification();
+				jaby.clearNotification();
 			}, 21000 );
 			setTimeout( function() {
-				jabyOrb.setOffline();
+				jaby.setOffline();
 			}, 24000 );
 			setTimeout( function() {
-				jabyOrb.turnOff();
+				jaby.turnOff();
 			}, 27000 );
 		};
 	</script>
