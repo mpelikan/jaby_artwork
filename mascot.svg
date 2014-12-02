@@ -28,7 +28,11 @@
 		<g id="inner">
 			<use xlink:href="#inner_glow" />
 			<circle id="inner_power" fill="#ff0" cx="350" cy="350" r="170" />
-			<circle id="inner_core" fill="url(#inner_gradient)" cx="350" cy="350" r="170" />
+			<circle id="inner_core" fill="url(#inner_gradient)" cx="350" cy="350" r="170">
+<!--
+				<animate attributeName="r" values="170; 200; 170" dur="2s" keyTimes="0; 0.5; 1" repeatCount="indefinite" />
+-->
+			</circle>
 		</g>
 
 		<linearGradient id="primary_gradient" x1="0.5" x2="0" y1="0" y2="1">
@@ -76,13 +80,16 @@
 		<g id="sphere_center">
 			<use xlink:href="#primary" />
 		</g>
-			<g id="sphere_holes">
+		<g id="sphere_holes">
 			<use xlink:href="#secondary" transform="rotate( 15, 350, 350)" />
 			<use xlink:href="#secondary" transform="rotate( 75, 350, 350)" />
 			<use xlink:href="#secondary" transform="rotate( 135, 350, 350)" />
 			<use xlink:href="#secondary" transform="rotate( 195, 350, 350)" />
 			<use xlink:href="#secondary" transform="rotate( 255, 350, 350)" />
 			<use xlink:href="#secondary" transform="rotate( 315, 350, 350)" />
+<!--
+			<animateTransform attributeName="transform" begin="0s" dur="60s" type="rotate" from="0 350 350" to="360 350 350" repeatCount="indefinite" />
+-->
 		</g>
 		<circle id="sphere_shine" fill="url(#shine_gradient)" cx="350" cy="350" r="300"/>
 	</g>
